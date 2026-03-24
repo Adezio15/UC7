@@ -4,24 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Inova Tech</title>
-<link rel="stylesheet" href="style.css">
-
-<meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Portal da Inova Tech - Centro de Capacitação Profissional com cursos na área de tecnologia e inovação.">
-
-<meta http-equiv="refresh" content="10">
-
-<meta name="author" content="ADEZIO">
-
-<link rel="icon" type="image/x-icon" href="img.png">
-</head>
-
-<body>
 <style>
-/* RESET */
+
+/* RESET + BOX MODEL */
 * {
     margin: 0;
     padding: 0;
@@ -34,148 +22,150 @@ body {
     background-color: #f5f5f5;
 }
 
-/* HEADER */
+/* HEADER FIXO */
 header {
-    background-color: #1e3a8a; /* cor de fundo */
-    color: white; /* texto diferente de preto */
-    text-align: center; /* centralizar */
-    padding: 0px;
-}
-
-/* MENU DE NAVEGAÇÃO */
-nav {
-    background-color: #2563eb;
-    text-align: center;
-    padding: 0px;
-}
-
-nav a {
-    text-decoration: none; /* remove sublinhado */
+    background: linear-gradient(to right, #7e7965, #278a1e);
     color: white;
-    margin: 5px; /* espaço entre links */
-    font-weight: bold;
+    text-align: center;
+    padding: ;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
 }
 
+/* NAV */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 200px;
+}
+
+/* LINKS */
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 1px 1px;
+    border-radius: 0px;
+}
+
+/* HOVER */
 nav a:hover {
-    color: #facc15;
+    color: #011611;
+}
+
+/* ACTIVE (clicado) */
+nav a:active {
+    background-color: #020c18;
+    color: rgb(0, 0, 0);
+}
+
+
+
+/* FOCUS (ativo) */
+nav a:focus {
+    outline: 2px solid #15fa61;
 }
 
 /* MAIN */
 main {
-    padding: 0px; /* espaço interno */
+    margin-top: 200px;
+    padding: 20px;
 }
 
 /* SEÇÕES */
 section {
-    margin-bottom: 0px; /* margem inferior */
-    padding: 0px;
-    border-radius: 0px;
+    padding: 2px;
+    margin-bottom: 2px;
+    border-radius: 2px;
 }
 
-/* ESTILOS DIFERENTES PARA CADA SEÇÃO */
-section:nth-child(1) {
-    background-color: #ffffff;
+/* CORES */
+section:nth-child(1) { background: #fff; }
+section:nth-child(2) { background: #e0f2fe; }
+section:nth-child(3) { background: #fef9c3; }
+
+/* TÍTULOS */
+:is(h1, h2, h3) {
+    text-align: center;
+    margin-bottom: 0px;
+    font-family: 'Segoe UI', Arial;
 }
 
-section:nth-child(2) {
+/* TEXTO */
+p {
+    text-align: justify;
+    line-height: 1.6;
+}
+
+/* SELEÇÃO DE TEXTO */
+p::selection {
+    background: #2563eb;
+    color: white;
+}
+
+/* VÍDEO E MAPA */
+iframe {
+    display: block;
+    margin: 5px auto;
+    max-width: 100%;
+}
+
+/* DEPOIMENTOS */
+.depoimentos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 1px;
+}
+
+/* CARD */
+.depoimento {
+    background: rgb(121, 66, 66);
+    padding: 1px;
+    border-radius: 1px;
+    border: 1px solid #9e8f8f;
+    transition: 0.3s;
+}
+
+/* HOVER NOS CARDS */
+.depoimento:hover {
+    transform: scale(1.5);
     background-color: #e0f2fe;
 }
 
-section:nth-child(3) {
-    background-color: #fef9c3;
-}
-
-section:nth-child(4) {
-    background-color: #dcfce7;
-}
-
-/* TÍTULOS */
-h2 {
-    margin-bottom: 0px;
-    color: #1e3a8a;
-}
-
-
-
-input, select, textarea {
-    padding: 10px; /* espaçamento interno */
-    border-radius: 0px; /* bordas arredondadas */
-    border: 1px solid #ccc;
-    font-size: 1em;
-}
-
-/* FORMULÁRIO */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-button {
-    padding: 2px;
-    border-radius: 8px; /* borda arredondada */
-    border: none;
-    background-color: #2563eb;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #1e3a8a;
-}
-
-/* FOOTER */
+/* FOOTER FIXO */
 footer {
-    background-color: #1e3a8a; /* cor de fundo */
-    color: white; /* cor do texto */
-    text-align: center; /* centralizado */
-    padding: 15px;
-
-    position: fixed; /* fixo */
-    bottom: 10;
-    width: 5px;
-}
-
-/* TEXTOS */
-h1, h2, h3 {
-    text-align: center; /* títulos centralizados */
-    font-family: 'Segoe UI', Arial, sans-serif;
-}
-
-p {
-    text-align: justify; /* parágrafos justificados */
-    font-family: 'Segoe UI', Arial, sans-serif;
-    line-height: 1.9; /* espaçamento entre linhas */
-    margin-bottom: 2px;
+    background-color: #1e3a8a;
+    color: rgb(83, 86, 99);
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
 }
 
 </style>
+</head>
+
+<body>
+
 <header>
 
-<div class="topo">
+<img src="img.png" width="200">
 
-<img src="img.png" alt="Logo Inova Tech" class="logo"
-
-width="700"
-height="300"
-
-br>
-<br>
-
-<h3><p>Centro de Capacitação Profissional</p></h3>
-
-</div>
+<h2>Inova Tech</h2>
 
 <nav>
-
 <ul>
-
-<li><a href="cursos.html">Conheça nossos Cursos</a></li>
-<li><a href="formularios.html">Secretaria Virtual</a></li>
-
+<li><a href="cursos.html">Cursos</a></li>
+<li><a href="formularios.html">Secretaria</a></li>
 </ul>
-
 </nav>
 
 </header>
@@ -183,73 +173,62 @@ br>
 <main>
 
 <section>
-
 <h2>Apresentação</h2>
 
-<p>História da Inova Tech
+<p>A Inova Tech é um centro de formação profissional focado em tecnologia e inovação, preparando alunos para o mercado de trabalho.</p>
 
-A Inova Tech – Centro de Capacitação Profissional foi criada com o objetivo de formar profissionais preparados para o mercado de trabalho na área de tecnologia e inovação. Fundada por educadores e profissionais da área de informática, a instituição nasceu com a missão de oferecer ensino de qualidade, acessível e focado nas necessidades do mundo digital.
-
-Desde sua criação, a Inova Tech tem investido em cursos modernos, infraestrutura tecnológica e professores qualificados, ajudando estudantes a desenvolver habilidades práticas em áreas como programação, desenvolvimento de sistemas e tecnologia da informação.
-
-Hoje, a Inova Tech é reconhecida como um centro de formação que incentiva a criatividade, a inovação e o crescimento profissional de seus alunos, preparando-os para os desafios do mercado de trabalho.</p>
-
-<iframe width="700" height="400"
-src="video.mp4"
-title="Apresentação da instituição"
-allowfullscreen>
-</iframe>
+<iframe width="700" height="400" src="video.mp4"></iframe>
 
 </section>
 
 <section>
-
 <h2>Localização</h2>
 
-<iframe
-src="https://www.google.com/maps?q=Natal+RN&output=embed"
-width="700"
-height="400">
-</iframe>
+<iframe src="https://www.google.com/maps?q=Natal+RN&output=embed" width="700" height="400"></iframe>
 
 </section>
 
 <section>
-
 <h2>Depoimentos</h2>
 
-<article class="depoimento">
+<div class="depoimentos-container">
 
+<div class="depoimento">
 <h3>Ana Souza</h3>
-<p>O curso da Inova Tech me ajudou a entrar no mercado de trabalho.</p>
+<p>O curso me ajudou muito! — <strong>por Weverton</strong></p>
+</div>
 
-</article>
-
-<article class="depoimento">
-
+<div class="depoimento">
 <h3>Carlos Silva</h3>
-<p>Aprendi programação do zero e hoje trabalho como desenvolvedor.</p>
+<p>Hoje trabalho como desenvolvedor. — <strong>por Weverton</strong></p>
+</div>
 
+<div class="depoimento">
+<h3>Maria Lima</h3>
+<p>Excelente ensino e professores. — <strong>por Weverton</strong></p>
+</div>
+
+<div class="depoimento">
+<h3>João Pedro</h3>
+<p>Aprendi programação rápido. — <strong>por Weverton</strong></p>
+</div>
+
+</div>
+
+</section>
 
 </main>
+
 <footer>
 
-    <h2>Contatos</h2>
+<h2>Contatos</h2>
+<p>Email: contato@inovatech.com</p>
+<p>Instagram | Facebook | LinkedIn</p>
 
-<p> Email: contato@inovatech.com</p>
-
-<p>Redes Sociais:</p>
-
-<a href="#">Instagram</a>
-<a href="#">Facebook</a>
-<a href="#">LinkedIn</a>
-
-<br>
 </footer>
 
 </body>
 </html>
-
 
 
 
