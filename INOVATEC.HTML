@@ -16,18 +16,18 @@
     box-sizing: border-box;
 }
 
-/* BODY */
+/* BORDA LATERAL */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #9c7a7a;
 }
 
-/* HEADER FIXO */
+/* cabeçalho FIXO */
 header {
-    background: linear-gradient(to right, #7e7965, #278a1e);
-    color: white;
+    background: linear-gradient(to right, #505049, #278a1e);
+    color: rgb(145, 129, 165);
     text-align: center;
-    padding: ;
+    padding:  ;
     position: fixed;
     top: 0;
     width: 100%;
@@ -42,48 +42,48 @@ nav ul {
     gap: 200px;
 }
 
-/* LINKS */
+/* LINKS DE NAVEGAÇÃO */
 nav a {
     text-decoration: none;
-    color: white;
+    color: rgb(208, 204, 219);
     font-weight: bold;
-    padding: 1px 1px;
+    padding: 10px 10px;
     border-radius: 0px;
 }
 
-/* HOVER */
+/* HOVER (COLOCAR O MOUSE EM CIMA DO LINK) */
 nav a:hover {
-    color: #011611;
+    color: #360caa;
 }
 
 /* ACTIVE (clicado) */
 nav a:active {
-    background-color: #020c18;
-    color: rgb(0, 0, 0);
+    background-color: #b6bdc5;
+    color: rgb(10, 0, 0);
 }
 
 
 
 /* FOCUS (ativo) */
 nav a:focus {
-    outline: 2px solid #15fa61;
+    outline: 2px solid #08441f;
 }
 
-/* MAIN */
+/* MAIN (MARGEM TOPO) */
 main {
     margin-top: 200px;
     padding: 20px;
 }
 
-/* SEÇÕES */
+/* SEÇÕES DE CADA ITEM */
 section {
-    padding: 2px;
+    padding: 20px;
     margin-bottom: 2px;
-    border-radius: 2px;
+    border-radius: 20px;
 }
 
-/* CORES */
-section:nth-child(1) { background: #fff; }
+/* CORES SEÇÕES */
+section:nth-child(1) { background: #e4dcdc; }
 section:nth-child(2) { background: #e0f2fe; }
 section:nth-child(3) { background: #fef9c3; }
 
@@ -100,10 +100,10 @@ p {
     line-height: 1.6;
 }
 
-/* SELEÇÃO DE TEXTO */
+/*QUANDO FIZER A SELEÇÃO DE TEXTO */
 p::selection {
-    background: #2563eb;
-    color: white;
+    background: #ac2341;
+    color: rgb(231, 221, 221);
 }
 
 /* VÍDEO E MAPA */
@@ -116,38 +116,38 @@ iframe {
 /* DEPOIMENTOS */
 .depoimentos-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 15px;
     max-height: 200px;
     overflow-y: auto;
-    padding: 1px;
+    padding: 10px;
 }
 
-/* CARD */
+/* CARD DOS DEPOIMENTOS */
 .depoimento {
-    background: rgb(121, 66, 66);
+    background: rgb(178, 168, 218);
     padding: 1px;
     border-radius: 1px;
-    border: 1px solid #9e8f8f;
+    border: 1px solid #c0b8b8;
     transition: 0.3s;
 }
 
 /* HOVER NOS CARDS */
 .depoimento:hover {
     transform: scale(1.5);
-    background-color: #e0f2fe;
+    background-color: #236c99;
 }
 
 /* FOOTER FIXO */
 footer {
-    background-color: #1e3a8a;
-    color: rgb(83, 86, 99);
+    background-color: #91949c;
+    color: rgb(138, 108, 153);
     text-align: center;
-    padding: 10px;
+    padding: 100px;
     position: fixed;
-    bottom: 0;
+    bottom: 10;
     width: 100%;
-    height: 5%;
+    height: 0%;
 }
 
 </style>
@@ -175,8 +175,8 @@ footer {
 <section>
 <h2>Apresentação</h2>
 
-<p>A Inova Tech é um centro de formação profissional focado em tecnologia e inovação, preparando alunos para o mercado de trabalho.</p>
-
+<p><h2>A Inova Tech é um centro de formação profissional focado em tecnologia e inovação, preparando alunos para o mercado de trabalho.</p>
+</h2>
 <iframe width="700" height="400" src="video.mp4"></iframe>
 
 </section>
@@ -195,22 +195,22 @@ footer {
 
 <div class="depoimento">
 <h3>Ana Souza</h3>
-<p>O curso me ajudou muito! — <strong>por Weverton</strong></p>
+<p>O curso me ajudou muito!  <strong></strong></p>
 </div>
 
 <div class="depoimento">
 <h3>Carlos Silva</h3>
-<p>Hoje trabalho como desenvolvedor. — <strong>por Weverton</strong></p>
+<p>Hoje trabalho como desenvolvedor.  <strong></strong></p>
 </div>
 
 <div class="depoimento">
 <h3>Maria Lima</h3>
-<p>Excelente ensino e professores. — <strong>por Weverton</strong></p>
+<p>Excelente ensino e professores.  <strong></strong></p>
 </div>
 
 <div class="depoimento">
 <h3>João Pedro</h3>
-<p>Aprendi programação rápido. — <strong>por Weverton</strong></p>
+<p>Aprendi programação rápido. <strong></strong></p>
 </div>
 
 </div>
@@ -221,9 +221,11 @@ footer {
 
 <footer>
 
-<h2>Contatos</h2>
+<div class="Contatos">
+<h3>Contatos</h3>
 <p>Email: contato@inovatech.com</p>
 <p>Instagram | Facebook | LinkedIn</p>
+</div>
 
 </footer>
 

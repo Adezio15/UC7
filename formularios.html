@@ -53,6 +53,35 @@ input, select, textarea {
     border: 1px solid #ccc;
 }
 
+/* PLACEHOLDER */
+::placeholder {
+    color: #888;
+    font-style: italic;
+}
+
+/* TIPOS DE INPUT */
+input[type="text"] { border-left: 4px solid #2563eb; }
+input[type="email"] { border-left: 4px solid #16a34a; }
+input[type="tel"] { border-left: 4px solid #f59e0b; }
+input[type="date"] { border-left: 4px solid #9333ea; }
+input[type="file"] { background-color: #f0f9ff; }
+
+/* VALIDAÇÃO */
+input:invalid {
+    border: 2px solid red;
+}
+
+input:valid {
+    border: 2px solid green;
+}
+
+/* FOCO */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border: 2px solid #2563eb;
+    background-color: #eff6ff;
+}
+
 /* TEXTAREA COM SCROLL */
 textarea {
     height: 120px;
@@ -68,10 +97,13 @@ button {
     background: #2563eb;
     color: white;
     cursor: pointer;
+    transition: 0.3s;
 }
 
+/* HOVER BOTÃO */
 button:hover {
     background: #1e3a8a;
+    transform: scale(1.05);
 }
 
 /* FIELDSET */
@@ -83,6 +115,18 @@ fieldset {
 .logo {
     display: block;
     margin: 0 auto 20px;
+}
+
+/* RODAPÉ */
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* HOVER RODAPÉ */
+footer p:hover {
+    transform: scale(1.2);
+    transition: 0.3s;
 }
 
 </style>
@@ -104,19 +148,19 @@ class="logo" width="100">
 
 <form>
 
-<input type="text" placeholder="Nome" required>
+<input type="text" placeholder="Nome" required minlength="3">
 <input type="email" placeholder="Email" required>
-<input type="tel" maxlength="11" placeholder="Telefone" required>
+<input type="tel" maxlength="11" placeholder="Telefone" required pattern="[0-9]{11}">
 
 <input type="text" placeholder="Assunto">
 
-<select>
-<option>Selecione o Curso</option>
+<select required>
+<option value="">Selecione o Curso</option>
 <option>Desenvolvimento de Sistemas</option>
 <option>Informática</option>
 </select>
 
-<textarea placeholder="Mensagem"></textarea>
+<textarea placeholder="Mensagem" required></textarea>
 
 <button type="submit">Enviar</button>
 <button type="reset">Limpar</button>
@@ -132,45 +176,49 @@ class="logo" width="100">
 
 <form>
 
-<input type="text" placeholder="Nome completo" required>
-<input type="text" maxlength="11" placeholder="CPF" required>
+<input type="text" placeholder="Nome completo" required minlength="5">
+<input type="text" maxlength="11" placeholder="CPF" required pattern="[0-9]{11}">
 <input type="text" placeholder="Endereço">
 
 <input type="email" placeholder="Email">
 <input type="tel" maxlength="11" placeholder="Telefone">
 
 <label>Sexo</label>
-<select>
+<select required>
+<option value="">Selecione</option>
 <option>Masculino</option>
 <option>Feminino</option>
 </select>
 
 <label>Data de nascimento</label>
-<input type="date">
+<input type="date" required>
 
 <label>Escolaridade</label>
-<select>
+<select required>
+<option value="">Selecione</option>
 <option>Ensino Fundamental</option>
 <option>Ensino Médio</option>
 <option>Ensino Superior</option>
 </select>
 
 <label>Cidade</label>
-<select>
+<select required>
+<option value="">Selecione</option>
 <option>Natal</option>
 <option>Mossoró</option>
 <option>Parnamirim</option>
 </select>
 
 <label>Estado</label>
-<select>
+<select required>
+<option value="">Selecione</option>
 <option>RN</option>
 <option>CE</option>
 <option>PB</option>
 </select>
 
 <label>Enviar documentação</label>
-<input type="file">
+<input type="file" required>
 
 <button type="submit">Enviar</button>
 <button type="reset">Limpar</button>
@@ -178,6 +226,11 @@ class="logo" width="100">
 </form>
 
 </div>
+
+<footer>
+<p>Email: contato@inovatech.com</p>
+<p>Instagram | Facebook | LinkedIn</p>
+</footer>
 
 </body>
 </html>
