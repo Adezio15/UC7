@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Kanban</title>
+
+<!-- 🎨 ESTILO (CSS) -->
+<style>
+body{
+    font-family: Arial; /* fonte da página */
+    background: #f2f2f2; /* cor de fundo */
+    padding: 20px; /* espaçamento interno */
+}
+
+h1{
+    text-align: center; /* centraliza o título */
+}
+
+/* FORMULÁRIO DE CRIAÇÃO */
+.form{
+    display: flex; /* coloca elementos lado a lado */
+    gap: 10px; /* espaço entre eles */
+    flex-wrap: wrap; /* quebra linha se necessário */
+    margin-bottom: 20px;
+}
+
+/* estilo dos inputs, textarea, select e botões */
+input, textarea, select, button{
+    padding: 10px;
+}
+
+/* ÁREA DO KANBAN (3 colunas) */
+.board{
+    display: flex; /* deixa colunas lado a lado */
+    gap: 20px;
+}
+
+/* CADA COLUNA */
+.coluna{
+    background: white;
+    padding: 10px;
+    width: 30%; /* cada coluna ocupa 30% */
+    border-radius: 8px;
+}
+
+/* CADA TAREFA */
+.tarefa{
+    background: #ddd;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* 🎯 CORES DE PRIORIDADE */
+.alta{ border-left: 5px solid red; }     /* prioridade alta */
+.media{ border-left: 5px solid yellow; } /* prioridade média */
+.baixa{ border-left: 5px solid green; }  /* prioridade baixa */
+
+/* BOTÕES */
+button{
+    margin-top: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TÍTULO -->
+<h1>Kanban</h1>
+
+<!-- 🧾 FORMULÁRIO -->
+<div class="form">
+
+    <!-- campo para título -->
+    <input id="titulo" placeholder="Título">
+
+    <!-- campo para descrição -->
+    <textarea id="descricao" placeholder="Descrição"></textarea>
+
+    <!-- seleção de prioridade -->
+    <select id="prioridade">
+        <option value="baixa">Baixa</option>
+        <option value="media">Média</option>
+        <option value="alta">Alta</option>
+    </select>
+
+    <!-- botão adicionar tarefa -->
+    <button onclick="adicionar()">Adicionar</button>
+
+    <!-- botão limpar tudo -->
+    <button onclick="limpar()">Limpar</button>
+</div>
+
+<!-- 📊 QUADRO KANBAN -->
+<div class="board">
+
+    <!-- COLUNA A FAZER -->
+    <div class="coluna">
+        <h2>A FAZER</h2>
+        <div id="todo"></div>
+    </div>
+
+    <!-- COLUNA EM ANDAMENTO -->
+    <div class="coluna">
+        <h2>EM ANDAMENTO</h2>
+        <div id="doing"></div>
+    </div>
+
+    <!-- COLUNA CONCLUÍDO -->
+    <div class="coluna">
+        <h2>CONCLUÍDO</h2>
+        <div id="done"></div>
+    </div>
+
+</div>
+
+<!-- 💻 JAVASCRIPT -->
+<script>
+
+// 🧠 ARRAY QUE GUARDA TODAS AS TAREFAS
+let tarefas = [];
+
+// ➕ ADICIONAR TAREFA
+function adicionar(){
+
+    // pega valores dos campos
+    const titulo = document.getElementById("titulo").value.trim();
+    const descricao = document.getElementById("descricao").value.trim();
+    const prioridade = document.getElementById("prioridade").value;
+
+    // se não tiver título, não adiciona
+    if(titulo === "") return;
+
+    // adiciona nova tarefa
+    tarefas.push({
+        id: Date.now(), // ID único
+        titulo, // título da tarefa
+        descricao, // descrição
+        prioridade, // prioridade escolhida
+        status: "todo" // começa em To Do
+    });
+
+    // limpa os campos
+    document.getElementById("titulo").value = "";
+    document.getElementById("descricao").value = "";
+
+    // atualiza a tela
+    renderizar();
+}
+
+// 🧹 LIMPAR TODAS AS TAREFAS
+function limpar(){
+    tarefas = []; // esvazia array
+    renderizar(); // atualiza tela
+}
+
+// ❌ EXCLUIR TAREFA
+function excluir(id){
+
+    // remove tarefa com o ID clicado
+    tarefas = tarefas.filter(t => t.id !== id);
+
+    renderizar();
+}
+
+// ➡️ AVANÇAR TAREFA
+function avancar(id){
+
+    tarefas = tarefas.map(t => {
+
+        // se for a tarefa clicada
+        if(t.id === id){
+
+            // muda o status
+            if(t.status === "todo") t.status = "doing";
+            else if(t.status === "doing") t.status = "done";
+
+            // se já estiver em done, remove
+            else if(t.status === "done") return null;
+
+        }
+
+        return t;
+
+    }).filter(t => t !== null); // remove tarefas nulas
+
+    renderizar();
+}
+
+// ✏️ EDITAR TAREFA
+function editar(id){
+
+    // encontra a tarefa
+    const tarefa = tarefas.find(t => t.id === id);
+
+    // pede novo título
+    const novoTitulo = prompt("Novo título:", tarefa.titulo);
+
+    // pede nova descrição
+    const novaDescricao = prompt("Nova descrição:", tarefa.descricao);
+
+    // se não cancelou, atualiza
+    if(novoTitulo !== null) tarefa.titulo = novoTitulo;
+    if(novaDescricao !== null) tarefa.descricao = novaDescricao;
+
+    renderizar();
+}
+
+// 🖥️ RENDERIZAR (MOSTRAR NA TELA)
+function renderizar(){
+
+    // limpa todas as colunas
+    document.getElementById("todo").innerHTML = "";
+    document.getElementById("doing").innerHTML = "";
+    document.getElementById("done").innerHTML = "";
+
+    // percorre todas as tarefas
+    tarefas.forEach(t => {
+
+        // cria elemento da tarefa
+        const div = document.createElement("div");
+
+        // adiciona classe + prioridade
+        div.className = "tarefa " + t.prioridade;
+
+        // conteúdo da tarefa
+        div.innerHTML = `
+            <strong>${t.titulo}</strong><br>
+            <small>${t.descricao}</small><br>
+
+            <button onclick="editar(${t.id})">Editar</button>
+            <button onclick="excluir(${t.id})">Excluir</button>
+            <button onclick="avancar(${t.id})">Avançar</button>
+
+        `;
+
+        // coloca na coluna correta (todo, doing ou done)
+        document.getElementById(t.status).appendChild(div);
+    });
+}
+
+</script>
+
+</body>
+</html>

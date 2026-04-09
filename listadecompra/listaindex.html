@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Compras</title>
+
+<!-- 🎨 ESTILO DA PÁGINA (CSS) -->
+<style>
+body{
+    font-family: Arial; /* fonte do site */
+    padding: 20px; /* espaçamento interno */
+    background: #f2f2f2; /* cor de fundo cinza claro */
+}
+
+input, select, button{
+    padding: 10px; /* espaço dentro dos botões e input */
+    margin: 5px; /* espaço entre eles */
+}
+
+/* caixa de cada categoria */
+.categoria{
+    background: white; /* fundo branco */
+    margin-top: 15px; /* espaço entre categorias */
+    padding: 10px; /* espaço interno */
+    border-radius: 8px; /* bordas arredondadas */
+}
+
+/* cada item da lista */
+.item{
+    display: flex; /* coloca texto e botão lado a lado */
+    justify-content: space-between; /* separa os lados */
+    padding: 5px;
+}
+
+/* quando o item está comprado */
+.comprado{
+    text-decoration: line-through; /* risca o texto */
+    color: gray; /* deixa cinza */
+}
+</style>
+</head>
+
+<body>
+
+<!-- TÍTULO DA PÁGINA -->
+<h1>Lista de Compras</h1>
+
+<!-- INPUT ONDE O USUÁRIO DIGITA O ITEM -->
+<input id="input" type="text" placeholder="Digite o item">
+
+<!-- SELECT PARA ESCOLHER A CATEGORIA -->
+<select id="categoria">
+    <option value="Frutas">🍉Frutas</option>
+    <option value="Limpeza">🧹Limpeza</option>
+    <option value="Mercearia">🛒Mercearia</option>
+    <option value="Congelados">❄️Congelados</option>
+</select>
+
+<!-- BOTÃO QUE CHAMA A FUNÇÃO ADICIONAR -->
+<button onclick="adicionar()">Adicionar</button>
+
+<!-- ONDE A LISTA VAI SER EXIBIDA -->
+<div id="lista"></div>
+
+<!-- 💻 JAVASCRIPT (LÓGICA DO PROJETO) -->
+<script>
+
+// 🧺 lista onde os itens vão ser armazenados
+let itens = [];
+
+// ➕ FUNÇÃO PARA ADICIONAR ITEM
+function adicionar(){
+
+    // pega o input do HTML
+    const input = document.getElementById("input");
+
+    // pega o select de categoria
+    const categoria = document.getElementById("categoria");
+
+    // pega o texto digitado e remove espaços
+    const nome = input.value.trim();
+
+    // pega a categoria selecionada
+    const cat = categoria.value;
+
+    // se não tiver nada escrito, não faz nada
+    if(nome === "") return;
+
+    // adiciona o item na lista
+    itens.push({
+        id: Date.now(), // cria um ID único
+        nome: nome, // nome do produto
+        categoria: cat, // categoria escolhida
+        comprado: false // começa como não comprado
+    });
+
+    // limpa o campo de texto
+    input.value = "";
+
+    // atualiza a tela
+    renderizar();
+}
+
+// ✔️ FUNÇÃO PARA MARCAR COMO COMPRADO
+function comprar(id){
+
+    // percorre todos os itens
+    itens = itens.map(i => {
+
+        // se o ID bater com o clicado
+        if(i.id === id){
+
+            // troca o estado (true/false)
+            i.comprado = !i.comprado;
+        }
+
+        return i;
+    });
+
+    // atualiza a tela
+    renderizar();
+}
+
+// ❌ FUNÇÃO PARA REMOVER ITEM
+function remover(id){
+
+    // cria nova lista sem o item clicado
+    itens = itens.filter(i => i.id !== id);
+
+    // atualiza a tela
+    renderizar();
+}
+
+// 🖥️ FUNÇÃO QUE DESENHA TUDO NA TELA
+function renderizar(){
+
+    // pega a div onde vai mostrar a lista
+    const lista = document.getElementById("lista");
+
+    // limpa a tela antes de redesenhar
+    lista.innerHTML = "";
+
+    // cria objeto para separar por categoria
+    let categorias = {};
+
+    // organiza itens por categoria
+    itens.forEach(i => {
+
+        // se não existir categoria ainda, cria
+        if(!categorias[i.categoria]){
+            categorias[i.categoria] = [];
+        }
+
+        // adiciona item na categoria correta
+        categorias[i.categoria].push(i);
+    });
+
+    // percorre cada categoria
+    for(let c in categorias){
+
+        // cria uma caixa para categoria
+        let div = document.createElement("div");
+        div.className = "categoria";
+
+        // título com quantidade de itens
+        div.innerHTML = `<h3>${c} (${categorias[c].length})</h3>`;
+
+        // percorre itens da categoria
+        categorias[c].forEach(i => {
+
+            // cria cada item na tela
+            div.innerHTML += `
+                <div class="item">
+
+                    <!-- texto do item -->
+                    <span onclick="comprar(${i.id})"
+                        class="${i.comprado ? 'comprado' : ''}">
+                        ${i.nome}
+                    </span>
+
+                    <!-- botão de excluir -->
+                    <button onclick="remover(${i.id})">Excluir</button>
+
+                </div>
+            `;
+        });
+
+        // adiciona categoria na página
+        lista.appendChild(div);
+    }
+}
+
+</script>
+
+</body>
+</html>
