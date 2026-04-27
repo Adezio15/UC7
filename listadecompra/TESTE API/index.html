@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"> <!-- Permite usar acentos (ç, ã, é, etc.) -->
+
+    <title>Buscar Municípios por Estado</title> <!-- Nome que aparece na aba do navegador -->
+
+    <link rel="stylesheet" href="style.css"> <!-- Conecta o arquivo de estilo (CSS) -->
+</head>
+<body>
+
+    <h1>Buscar Municípios</h1>
+
+    <input type="text" id="estado" placeholder="Digite a sigla do estado (ex: RN)"> <!-- Campo onde o usuário digita o estado -->
+
+    <button onclick="buscarMunicipios()">LISTAR MUNICÍPIOS</button>   <!-- Botão para pesquisar municípios -->
+
+    <div id="resultado"></div>  <!-- Área onde os municípios vão aparecer -->
+
+    <script src="script.js"></script>   <!-- Conecta o arquivo JavaScript -->
+</body>
+</html>
