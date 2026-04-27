@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Busca de Nome</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #0d1117;
+      color: white;
+      text-align: center;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🔎 Quantas pessoas têm esse nome?</h1>
+
+  <!-- Campo para nome -->
+  <input type="text" id="nomeInput" placeholder="Digite um nome">
+
+  <!-- Campo para estado -->
+  <input type="text" id="estadoInput" placeholder="Estado (ex: CE)">
+
+  <button id="btnBuscar">Buscar</button>
+
+  <div id="resultado" class="resultado"></div>
+
+  <script src="novaapi.js"></script>
+
+</body>
+</html>
